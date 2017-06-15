@@ -45,7 +45,7 @@ Le API rispondo con un messaggio strutturato nel seguente modo
 --- index.js                / /file principale da eseguire
 --- package.js
 --+ routes
-  |---- db-utilities.js      //funzioni condivise da tutti, per interagire con il db
+  |---- db-utilities.js      //funzioni condivise tra tutti, per interagire con il db
   |--+ admin
      |--- admin-index.js     //file principale del modulo Admin
      |--- admin-utilities.js //funzioni del modulo Admin       
