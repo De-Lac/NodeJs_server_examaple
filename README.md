@@ -1,3 +1,6 @@
+Questo file di readme, è stato scritto utilizzando il linguaggio [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links)
+
+
 # NodeJs_server_examaple
 Esempio di server in Nodejs, con: 
 - autenticazione JWT
@@ -62,6 +65,7 @@ poi avviarlo con il comando
 
 
 # Tutorial di riferimento Scotch.io
-- [[https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens|JWT e Node]]
-- [[https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications|Mongoose e Node]]
-- [[https://scotch.io/tutorials/keeping-api-routing-clean-using-express-routers|Organizzare le route]]
+- [JWT e Node](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
+- [Mongoose e Node](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications)
+- [Organizzare le route](https://scotch.io/tutorials/keeping-api-routing-clean-using-express-routers)
+
