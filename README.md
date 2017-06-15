@@ -61,3 +61,7 @@ poi avviarlo con il comando
 
 
 
+# Tutorial di riferimento Scotch.io
+- [[https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens|JWT e Node]]
+- [[https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications|Mongoose e Node]]
+- [[https://scotch.io/tutorials/keeping-api-routing-clean-using-express-routers|Organizzare le route]]
