@@ -12,12 +12,6 @@ module.exports = apiRoutes;
 
 
 
-  
-
-// route to return all users
-apiRoutes.get('/users', function(req, res){GETallUsers(req, res)});   
-
-
 
 /* ======================================== 
   Login of a user, params:
@@ -39,7 +33,7 @@ apiRoutes.post('/authenticate', function(req, res)
                       {
                         res.status(201).json({success: true, 
                                               message: 'Enjoy your token!', 
-                                              token: token});
+                                              data: {'token':token}});
                       })
                     .catch(function(err)
                       { res.status(400).json({ success: false, 

@@ -16,8 +16,8 @@ module.exports = api_utilities;
 // =======================
 // ERROR CODES
 // =======================
-this.ERR_ADMIN_NOT_FOUND = 'ERR_API_NOT_FOUND';
-this.ERR_ADMIN_WRONG_PSW = 'ERR_API_WRONG_PSW';
+this.ERR_API_NOT_FOUND = 'ERR_API_NOT_FOUND';
+this.ERR_API_WRONG_PSW = 'ERR_API_WRONG_PSW';
 
 
 
@@ -46,14 +46,14 @@ this.login = function(name, psw)
       .then(function(user) 
         {
          if (!user) 
-          { deferred.reject({code:'ERR_API_NOT_FOUND',
+          { deferred.reject({code:this.ERR_API_NOT_FOUND,
                              msg:'utente non trovato'});  
           } 
         else 
           {
             // check if password matches
             if (user.password != psw) 
-              { deferred.reject({code:'ERR_API_WRONG_PSW',
+              { deferred.reject({code:this.ERR_API_WRONG_PSW,
                                  msg:'credenziali errate'}); 
               } 
             else 
