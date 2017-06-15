@@ -1,0 +1,19 @@
+{
+  "name": "tutorial_jwt",
+  "version": "1.0.0",
+  "description": "tutorial jwt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.5",
+    "morgan": "^1.8.2",
+    "q": "^1.5.0"
+  }
+}
