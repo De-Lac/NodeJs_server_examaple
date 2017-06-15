@@ -62,6 +62,9 @@ Prima di avviare il server, installare le dipendenze con il comando
 poi avviarlo con il comando  
 `node index.js`
 
+oppure installate [https://github.com/foreverjs/forever](forever), per riavvere in automatico Node dopo una modifica, o dopo un crash. (-w sta per watch, cioè controlla se sono state salvate modifiche)
+`forever -w start index.js`
+
 
 
 # Tutorial di riferimento Scotch.io
