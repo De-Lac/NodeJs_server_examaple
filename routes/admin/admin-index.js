@@ -9,7 +9,25 @@ module.exports = adminRoutes;
 var admin_utilities=require('./admin-utilities');
 
 // route middleware to verify a token
-//adminRoutes.use(function(req, res, next){checkToken(req, res, next)});
+adminRoutes.use(function(req, res, next)
+    {
+      // check header or url parameters or post parameters for token
+     var token = req.body.token || req.query.token || req.headers['x-access-token'];
+     if (!token)
+         {return res.status(403).send({ success: false,  message: 'No token provided.' });}
+    
+     var isAuthorizated = admin_utilities.checkToken(token);
+     if (isAuthorizated)
+         {
+          logger.debug('accesso admin autorizzato');
+          next(); /* procedi */
+         }
+     else
+         { 
+          res.status(401).json({ success: false, message: 'non sei autorizzato ad utilizzare questa route' }); 
+          /* no next(), quindi si ferma qui */
+         }
+    });
 
 // routes
 adminRoutes.get('/setup', function(req, res)
@@ -48,48 +66,3 @@ adminRoutes.get('/users', function(req, res)
               });
     });
 
-
-
-
-/* check if the token is valid, and if the user has the 'Admin' role */
-function checkToken (req, res, next) 
-{
-
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) 
-   {
-    // verifies secret and checks exp
-    jwt.verify(token, config.secret, function(err, decoded) {      
-      if (err) 
-        {
-         return res.json({ success: false, message: 'Failed to authenticate token.' });    
-        } 
-      else 
-      {
-        req.decoded = decoded;   
-        //      console.log(decoded);
-        //      sono un amministratore?
-        var is_admin = decoded['_doc'].admin;
-        console.log("sono un admin? "+is_admin);
-        if (is_admin)
-            { next(); /* procedi */}
-        else
-            {
-             res.status(401).json({ success: false, message: 'non sei autorizzato ad utilizzare questa route' }); 
-            /* no next(), quindi si ferma qui */
-            }
-      }
-    });
-
-  }   
- else 
-  { //  there is no token
-    return res.status(403).send({ 
-        success: false, 
-        message: 'No token provided.' 
-    });
-  }
-}

@@ -49,8 +49,54 @@ this.getAllUsers = function()
     var deferred = Q.defer();
     User.find({})
         .then(function(users) 
-            { deferred.resolve(users); })
+            { 
+             logger.debug("getAllUsers "+JSON.stringify(users));
+             deferred.resolve(users); 
+            })
         .catch(function(err)
-            { deferred.reject({code:"", msg:err});  });
+            {
+             logger.error('[getAllUsers] '+err);
+             deferred.reject({code:"", msg:err});  
+            });
     return deferred.promise;
+}
+
+
+
+/* check if the token is valid, and if the user has the 'Admin' role */
+this.checkToken = function(token) 
+{
+
+  // decode token
+  if (token) 
+   {
+    // verifies secret and checks exp
+    jwt.verify(token, config.secret, function(err, decoded) {      
+      if (err) 
+        {
+         logger.error('token expired or not authenticated: '+token);
+         return false;    
+        } 
+      else 
+      {
+        req.decoded = decoded;   
+        //      sono un amministratore?
+        var is_admin = decoded['_doc'].admin;
+        logger.debug("sono un admin? "+is_admin);
+        if (is_admin)
+            { return true;}
+        else
+            {
+             logger.error('[checkToken] tentativo di accesso non autorizzato');
+             return false;
+            }
+      }
+    });
+
+  }   
+ else 
+  { //  there is no token
+    logger.debug('no token provided');
+    return false;
+  }
 }
