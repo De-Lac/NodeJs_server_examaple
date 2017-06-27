@@ -10,6 +10,10 @@ Esempio di server in Nodejs, con:
 - organizzazione route divisa in diversi Router di Express
 
 
+# ChangeLog
+- 27/06/2017 -- aggiunto Winston come logger
+
+
 # API esposte dal server:
 
 /     
