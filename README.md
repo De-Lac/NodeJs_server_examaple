@@ -11,7 +11,7 @@ Esempio di server in Nodejs, con:
 
 
 # ChangeLog
-- 27/06/2017 -- aggiunto Winston come logger
+- 27/06/2017 -- aggiunto logger Winston (differenzio tra info, debug e error. gli errori sono scritti su file)
 
 
 # API esposte dal server:
