@@ -1,3 +1,6 @@
+Questo file di readme, è stato scritto utilizzando il linguaggio [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links)
+
+
 # NodeJs_server_examaple
 Esempio di server in Nodejs, con: 
 - autenticazione JWT
@@ -41,9 +44,8 @@ Le API rispondo con un messaggio strutturato nel seguente modo
 ```
 --- index.js                / /file principale da eseguire
 --- package.js
---- package.js
 --+ routes
-  |---- db-utilities.js      //funzioni condivise da tutti, per interagire con il db
+  |---- db-utilities.js      //funzioni condivise tra tutti, per interagire con il db
   |--+ admin
      |--- admin-index.js     //file principale del modulo Admin
      |--- admin-utilities.js //funzioni del modulo Admin       
@@ -60,5 +62,13 @@ Prima di avviare il server, installare le dipendenze con il comando
 poi avviarlo con il comando  
 `node index.js`
 
+oppure installate [https://github.com/foreverjs/forever](forever), per riavviare in automatico Node dopo una modifica, o dopo un crash. (-w sta per watch, cioè controlla se sono state salvate modifiche)  
+`forever -w start index.js`
 
+
+
+# Tutorial di riferimento Scotch.io
+- [JWT e Node](https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens)
+- [Mongoose e Node](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications)
+- [Organizzare le route](https://scotch.io/tutorials/keeping-api-routing-clean-using-express-routers)
 
