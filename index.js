@@ -14,6 +14,42 @@ mongoose.Promise = require('q').Promise;
 var config = require('./config');        // get our config file
 
 
+// =======================
+// SETUP GLOBAL LOGGER
+// =======================
+var winston     = require('winston');
+var fs          = require('fs');
+
+// create the log directory if it does not exist
+if (!fs.existsSync(config['log-dir'])) 
+   {  fs.mkdirSync(config['log-dir']); }
+
+var tsFormat = () => (new Date()).toLocaleDateString();
+global.logger = new (winston.Logger)({
+    transports:[
+        new (winston.transports.Console)({
+            timestamp: tsFormat,
+            colorize: true,
+            level: config['ambiente-log']   
+            /* qui setto il livello di debug da usare tra
+               { error:0, warn:1, info:2, verbose:3, debug:4, silly:5 }
+               il più alto comprende anche i più bassi. Esempio:
+               se scelgo 'info', i log 'debug' verranno ignorati
+            */
+        }),
+        new (winston.transports.File)({
+            filename: `${config['log-dir']}/errors.log`,
+            timestamp: tsFormat,
+            level: 'error'
+            /* solo per quanto riguarda gli errori,
+               oltre a scriverli sulla console
+               li salvo in un file errors.log
+            */
+        })
+    ]
+});
+
+
 
 
 // =======================
@@ -68,4 +104,5 @@ app.use('/api', apiRoutes);   // put /admin as prefix
 // start the server ======
 // =======================
 app.listen(port);
-console.log('server avviato su localhost:' + port);
+logger.info('server avviato su localhost:' + port);
+logger.debug('ambiente di log settato a debug');

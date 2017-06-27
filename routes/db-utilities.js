@@ -52,17 +52,17 @@ this.addUser = function(user)
   nick.save()
              .then(function(user) 
                 {
-                 console.log('utente salvato');
-                 console.log(user);
+                 logger.debug('utente salvato '+JSON.stringify(user));
                  /* eventuale invio email */
                  deferred.resolve(user);
                 })
               .catch(function(err)
                  {
-                  console.error('errore salvataggio utente '+err.errmsg);
                   if (err.code == ERR_DB_DUPLICATE_KEY)
                       {deferred.reject({code:'ERR_DB_DUPLICATE_KEY', 
                                         msg:'questo utente esiste gia'}); }
+                  else
+                      {logger.error('[addUser] errore salvataggio utente '+err.errmsg);}
                   deferred.reject(err.errmsg);    
                  });
     return deferred.promise;
