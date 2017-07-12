@@ -61,10 +61,39 @@ this.getAllUsers = function()
     return deferred.promise;
 }
 
-
-
 /* check if the token is valid, and if the user has the 'Admin' role */
 this.checkToken = function(token) 
+{
+  // decode token
+  if (token) 
+   {
+    // verifies secret and checks exp
+    try{
+      var decoded = jwt.verify(token, config.secret);
+      var is_admin = decoded['_doc'].admin;
+      logger.debug("sono un admin? "+is_admin);
+      if (is_admin)
+            { return true;}
+        else
+            {
+             logger.error('[checkToken] tentativo di accesso non autorizzato');
+             return false;
+            }
+    } catch(err){
+        logger.error('token expired or not authenticated: '+token);
+         return false;    
+    }
+
+  }   
+ else 
+  { //  there is no token
+    logger.debug('no token provided');
+    return false;
+  }
+}
+
+/* Async version of the previous */
+this.checkTokenAsync = function(token) 
 {
 
   // decode token
@@ -78,8 +107,7 @@ this.checkToken = function(token)
          return false;    
         } 
       else 
-      {
-        req.decoded = decoded;   
+      {  
         //      sono un amministratore?
         var is_admin = decoded['_doc'].admin;
         logger.debug("sono un admin? "+is_admin);
