@@ -10,6 +10,11 @@ Esempio di server in Nodejs, con:
 - organizzazione route divisa in diversi Router di Express
 
 
+# Client di Riferimento in AngularJs 1
+- [link al repo](https://github.com/De-Lac/AngularJs_client_example)
+
+
+
 # ChangeLog
 - 27/06/2017 -- aggiunto logger Winston (differenzio tra info, debug e error. gli errori sono scritti su file)
 
