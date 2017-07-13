@@ -17,7 +17,7 @@ adminRoutes.use(function(req, res, next)
          {return res.status(403).send({ success: false,  message: 'No token provided.' });}
     
      admin_utilities.checkToken(token)
-     .then(function(decoded)
+        .then(function(decoded)
           {
              if (decoded)
                  {
@@ -40,8 +40,10 @@ adminRoutes.use(function(req, res, next)
                   /* no next(), quindi si ferma qui */
                  }         
           }
-     .catch(function(err)
-           { res.status(401).json({ success: false, message: 'token non valido' });  }));
+        
+        ).catch(function(err)
+           { res.status(401).json({ success: false, message: 'token non valido' });  
+        });
 
     });
 
