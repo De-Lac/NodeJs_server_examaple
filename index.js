@@ -55,6 +55,25 @@ global.logger = new (winston.Logger)({
 // =======================
 // INIZIALIZZAZIONE SERVER E PACCHETTI 
 // =======================
+
+
+
+/*
+  if I make requests from a different domain of the server, I have to grant the access to that specific domain.
+  Example.  I have deployed my server on http://myserver1.it
+  But I send requests from http://myserver2.it  In this case I should enable 'myserver2.it' as granted domain.
+  in the rule 'Access-Control-Allow-Origin'.  If I use '*', I enable any domain.
+*/
+app.use(function(req, res, next){
+
+  res.setHeader('Access-Control-Allow-Origin', '*');                                            //granted domains
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //granted headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');             //granted http verbs
+  next();
+});
+
+
 var port = process.env.PORT || 8080; // used to create, sign, and verify tokens
 mongoose.connect(config.database); // connect to database
 
