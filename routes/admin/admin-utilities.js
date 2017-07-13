@@ -63,10 +63,13 @@ this.getAllUsers = function()
 
 
 
-/* check if the token is valid, and if the user has the 'Admin' role */
+/* check if the token is valid, and if the user has the 'Admin' role 
+- if it's admin, return the decoded data
+- else return false
+*/
 this.checkToken = function(token) 
 {
-
+   var deferred = Q.defer();
   // decode token
   if (token) 
    {
@@ -75,20 +78,19 @@ this.checkToken = function(token)
       if (err) 
         {
          logger.error('token expired or not authenticated: '+token);
-         return false;    
+         deferred.reject(false);   
         } 
       else 
       {
-        req.decoded = decoded;   
         //      sono un amministratore?
         var is_admin = decoded['_doc'].admin;
         logger.debug("sono un admin? "+is_admin);
         if (is_admin)
-            { return true;}
+            { deferred.resolve(decoded);} // is admin, return the token
         else
             {
              logger.error('[checkToken] tentativo di accesso non autorizzato');
-             return false;
+             deferred.resolve(false);
             }
       }
     });
@@ -97,6 +99,7 @@ this.checkToken = function(token)
  else 
   { //  there is no token
     logger.debug('no token provided');
-    return false;
+    deferred.reject(false);
   }
+ return deferred.promise;
 }

@@ -18,7 +18,7 @@ module.exports = api_utilities;
 // =======================
 this.ERR_API_NOT_FOUND = 'ERR_API_NOT_FOUND';
 this.ERR_API_WRONG_PSW = 'ERR_API_WRONG_PSW';
-
+this.ERR_MISSING_DATA  = 'ERR_MISSING_DATA';
 
 
 

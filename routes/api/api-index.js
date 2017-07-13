@@ -24,8 +24,9 @@ apiRoutes.post('/authenticate', function(req, res)
                // controllo parametri
               if (!name || !psw)
                   {
-                    res.status(400).json({ success: false, 
-                               message: 'Bad Request. name and password required.' });  
+                    return res.status(400).json({ success: false, 
+                                                  code:     api_utilities.ERR_API_NOT_FOUND,
+                                                  message: 'Bad Request. name and password required.' });  
                   }
                // esecuzione funzione
               api_utilities.login(name, psw)
@@ -55,8 +56,9 @@ apiRoutes.post('/signup', function(req, res)
               // controllo parametri
               if (!name || !psw)
                   {
-                    res.status(400).json({ success: false, 
-                               message: 'Bad Request. name and password required.' });  
+                    return res.status(400).json({ success: false, 
+                                                  code:api_utilities.ERR_MISSING_DATA,
+                                                  message: 'Bad Request. name and password required.' });  
                   } 
                // esecuzione funzione    
               api_utilities.addUser(name, psw)
