@@ -124,4 +124,5 @@ app.use('/api', apiRoutes);   // put /admin as prefix
 // =======================
 app.listen(port);
 logger.info('server avviato su localhost:' + port);
+logger.info('#### trovi un client Angular di prova su https://github.com/De-Lac/AngularJs_client_example ####');
 logger.debug('ambiente di log settato a debug');
